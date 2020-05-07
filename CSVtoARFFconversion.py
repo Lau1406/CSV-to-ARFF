@@ -12,7 +12,7 @@ class convert(object):
     def __init__(self):
         self.csvInput()
         self.arffOutput()
-        print '\nFinished.'
+        print('\nFinished.')
 
     #import CSV
     def csvInput(self):
@@ -23,7 +23,7 @@ class convert(object):
         if user.endswith('.csv') == True:
             self.name = user.replace('.csv', '')
             
-        print 'Opening CSV file.'     
+        print('Opening CSV file.')
         try:
             with open(user, 'rb') as csvfile:
                lines = csv.reader(csvfile, delimiter = ',')
@@ -35,12 +35,12 @@ class convert(object):
         #just in case user tries to open a file that doesn't exist
         except IOError:
             sleep(2)
-            print 'File not found.\n'
+            print('File not found.\n')
             self.csvInput()
             
     #export ARFF
     def arffOutput(self):
-        print 'Converting to ARFF file.\n'
+        print('Converting to ARFF file.\n')
         title = str(self.name) + '.arff'
         new_file = open(title, 'w')
 
