@@ -2,6 +2,7 @@
 # CSV to ARFF #
 ###############
 from argparse import ArgumentParser
+import sys
 import csv
 
 parser = ArgumentParser()
@@ -44,10 +45,17 @@ class Convert(object):
     def __init__(self):
         self.csv = args.csv_file
         self.arff = args.output_file
+        self.parse_args()
 
         self.parse_csv()
         self.arff_output()
         print('\nFinished.')
+
+    def parse_args(self):
+        if not self.csv.endswith('.csv'):
+            sys.exit('Input file not specified correctly, missing .csv')
+        if not self.arff.endswith('.arff'):
+            sys.exit('Output file not specified correctly, missing .arff')
 
     # import CSV
     def parse_csv(self):
