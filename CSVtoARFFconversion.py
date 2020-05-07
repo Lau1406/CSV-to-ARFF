@@ -66,7 +66,7 @@ class Convert(object):
             
         print('Opening CSV file.')
         try:
-            with open(self.csv, 'rb') as csvfile:
+            with open(self.csv) as csvfile:
                 lines = csv.reader(csvfile, delimiter=args.delimiter)
                 for row in lines:
                     self.content.append(row)
