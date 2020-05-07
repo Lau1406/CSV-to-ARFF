@@ -26,9 +26,9 @@ class Convert(object):
         print('Opening CSV file.')
         try:
             with open(user, 'rb') as csvfile:
-               lines = csv.reader(csvfile, delimiter = ',')
-               for row in lines:
-                   self.content.append(row)
+                lines = csv.reader(csvfile, delimiter=',')
+                for row in lines:
+                    self.content.append(row)
             csvfile.close()
             sleep(2)  # sleeps added for dramatic effect!
             
