@@ -84,7 +84,7 @@ class Convert(object):
 
         # get attribute type input
         for i in range(len(self.content[0])-1):
-            attribute_type = raw_input('Is the type of ' + str(self.content[0][i]) + ' numeric or nominal? ')
+            attribute_type = input('Is the type of ' + str(self.content[0][i]) + ' numeric or nominal? ')
             new_file.write('@attribute ' + str(self.content[0][i]) + ' ' + str(attribute_type) + '\n')
 
         # create list for class attribute
