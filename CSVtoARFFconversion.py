@@ -116,9 +116,18 @@ class Convert(object):
         new_file.write('@relation ' + title + '\n\n')
 
         # get attribute type input
-        for i in range(len(self.content[0])-1):
-            attribute_type = input('Is the type of ' + str(self.content[0][i]) + ' numeric or nominal? ')
-            new_file.write('@attribute ' + str(self.content[0][i]) + ' ' + str(attribute_type) + '\n')
+        for i in range(len(self.content[0])):
+            choice = None
+            while choice is None:
+                choice = self.get_input(self.content[0][i])
+                try:
+                    choice = self.lookup[int(choice)]
+                except (ValueError, IndexError) as e:
+                    choice = None
+                    print('Not a valid option, please try again')
+
+            # Choice is a valid choice
+            new_file.write('@attribute ' + str(self.content[0][i]) + ' ' + choice + '\n')
 
         # create list for class attribute
         last = len(self.content[0])
