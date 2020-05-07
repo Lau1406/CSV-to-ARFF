@@ -5,12 +5,10 @@ from argparse import ArgumentParser
 import csv
 
 parser = ArgumentParser()
+parser.add_argument('-in', '-input', '-csv', dest='csv_file', help='The input csv file location', metavar='FILE', required=True)
+parser.add_argument('-out', '-output', '-arff', dest='output_file', help='The output arff file location', metavar='FILE', required=True)
 
-
-def setup_parser():
-    parser.add_argument('-in', '-input', '-csv', dest='csv_file', help='The input csv file location', metavar='FILE', required=True)
-    parser.add_argument('-out', '-output', '-arff', dest='output_file', help='The output arff file location', metavar='FILE', required=True)
-    return parser.parse_args()
+args = parser.parse_args()
 
 
 class Convert(object):
@@ -87,5 +85,4 @@ class Convert(object):
         new_file.close()
 
 
-args = setup_parser()
 run = Convert()
