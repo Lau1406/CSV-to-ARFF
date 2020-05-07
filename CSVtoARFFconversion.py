@@ -127,21 +127,20 @@ class Convert(object):
                     print('Not a valid option, please try again')
 
             # Choice is a valid choice
-            new_file.write('@attribute ' + str(self.content[0][i]) + ' ' + choice + '\n')
+            if choice == 'nominal':  # hard coded for now, should maybe make a bit more dynamic
+                # Create list of all different attributes
+                class_items = []
+                for j in range(len(self.content)):
+                    name = self.content[j][i]
+                    if name not in class_items:
+                        class_items.append(name)
+                del class_items[0]
 
-        # create list for class attribute
-        last = len(self.content[0])
-        class_items = []
-        for i in range(len(self.content)):
-            name = self.content[i][last-1]
-            if name not in class_items:
-                class_items.append(self.content[i][last-1])
+                string = '{' + ','.join(sorted(class_items)) + '}'
+                new_file.write('@attribute ' + str(self.content[0][i]) + ' ' + string + '\n')
+
             else:
-                pass  
-        del class_items[0]
-    
-        string = '{' + ','.join(sorted(class_items)) + '}'
-        new_file.write('@attribute ' + str(self.content[0][last-1]) + ' ' + str(string) + '\n')
+                new_file.write('@attribute ' + str(self.content[0][i]) + ' ' + choice + '\n')
 
         # write data
         new_file.write('\n@data\n')
