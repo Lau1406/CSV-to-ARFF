@@ -42,23 +42,24 @@ class Convert(object):
     name = ''
 
     def __init__(self):
-        self.csv_input()
+        self.csv = args.csv_file
+        self.arff = args.output_file
+
+        self.parse_csv()
         self.arff_output()
         print('\nFinished.')
 
     # import CSV
-    def csv_input(self):
-
-        user = raw_input('Enter the CSV file name: ')
+    def parse_csv(self):
 
         # remove .csv
-        if user.endswith('.csv'):
-            self.name = user.replace('.csv', '')
+        if self.csv.endswith('.csv'):
+            self.name = self.csv.replace('.csv', '')
             
         print('Opening CSV file.')
         try:
-            with open(user, 'rb') as csvfile:
-                lines = csv.reader(csvfile, delimiter=',')
+            with open(self.csv, 'rb') as csvfile:
+                lines = csv.reader(csvfile, delimiter=args.delimiter)
                 for row in lines:
                     self.content.append(row)
             csvfile.close()
@@ -66,7 +67,7 @@ class Convert(object):
         # just in case user tries to open a file that doesn't exist
         except IOError:
             print('File not found.\n')
-            self.csv_input()
+            self.parse_csv()
             
     # export ARFF
     def arff_output(self):
