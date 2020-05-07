@@ -20,7 +20,7 @@ class Convert(object):
         user = raw_input('Enter the CSV file name: ')
 
         # remove .csv
-        if user.endswith('.csv') == True:
+        if user.endswith('.csv'):
             self.name = user.replace('.csv', '')
             
         print('Opening CSV file.')
