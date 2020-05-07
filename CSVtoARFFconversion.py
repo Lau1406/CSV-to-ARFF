@@ -5,9 +5,34 @@ from argparse import ArgumentParser
 import csv
 
 parser = ArgumentParser()
-parser.add_argument('-in', '-input', '-csv', dest='csv_file', help='The input csv file location', metavar='FILE', required=True)
-parser.add_argument('-out', '-output', '-arff', dest='output_file', help='The output arff file location', metavar='FILE', required=True)
-parser.add_argument('-d', '-delimiter', dest='delimiter', default=',', help='If you need a different delimiter from the default comma', metavar='STRING', required=False, choices=[',', ':', ';', '?', ' '])
+parser.add_argument(
+    '-in',
+    '-input',
+    '-csv',
+    dest='csv_file',
+    help='The input csv file location',
+    metavar='FILE',
+    required=True
+)
+parser.add_argument(
+    '-out',
+    '-output',
+    '-arff',
+    dest='output_file',
+    help='The output arff file location',
+    metavar='FILE',
+    required=True
+)
+parser.add_argument(
+    '-d',
+    '-delimiter',
+    dest='delimiter',
+    default=',',
+    help='If you need a different delimiter from the default comma',
+    metavar='STRING',
+    required=False,
+    choices=[',', ':', ';', '?', ' ']
+)
 
 args = parser.parse_args()
 
