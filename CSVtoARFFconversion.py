@@ -41,6 +41,12 @@ args = parser.parse_args()
 class Convert(object):
     content = []
     name = ''
+    lookup = [
+        'nominal',
+        'numeric',
+        'string',
+        'date',
+    ]
 
     def __init__(self):
         self.csv = args.csv_file
