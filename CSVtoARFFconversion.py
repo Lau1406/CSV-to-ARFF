@@ -80,15 +80,22 @@ class Convert(object):
     # export ARFF
     def arff_output(self):
         print('Converting to ARFF file.\n')
-        title = str(self.name) + '.arff'
-        new_file = open(title, 'w')
+        if '/' in self.csv:
+            parts = self.csv.split('/')
+        elif '\\' in self.csv:
+            parts = self.csv.split('\\')
+        else:
+            parts = [self.csv]
+
+        title = str(parts[len(parts)-1][:-4])
+        new_file = open(self.arff, 'w')
 
         ##
         # following portions formats and writes to the new ARFF file
         ##
 
         # write relation
-        new_file.write('@relation ' + str(self.name)+ '\n\n')
+        new_file.write('@relation ' + title + '\n\n')
 
         # get attribute type input
         for i in range(len(self.content[0])-1):
