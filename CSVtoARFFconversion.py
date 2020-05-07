@@ -57,6 +57,18 @@ class Convert(object):
         self.arff_output()
         print('\nFinished.')
 
+    def get_input(self, name: str) -> str:
+        print('Is the type of ' + name, end='')
+        for i in range(len(self.lookup)):
+            if i == 0:
+                print(' ' + self.lookup[i] + '[' + str(i) + ']', end='')
+            elif i == len(self.lookup) - 1:
+                # Last entry
+                print(' or ' + self.lookup[i] + '[' + str(i) + ']?')
+            else:
+                print(', ' + self.lookup[i] + '[' + str(i) + ']', end='')
+        return input()
+
     def parse_args(self):
         if not self.csv.endswith('.csv'):
             sys.exit('Input file not specified correctly, missing .csv')
